@@ -4,6 +4,7 @@ const vm = new Vue({
         produtos: [],
         produto: false,
         carrinho: [],
+        carrinhoAtivo: false, 
         mensagemAlerta: 'item adicionado',
         alertaAtivo: false,
     },
@@ -15,7 +16,6 @@ const vm = new Vue({
     computed: {
         carrinhoTotal() {
             let total = 0;
-            console.log('caiu aqui')
             if(this.carrinho.length) {
                 this.carrinho.forEach(item => {
                     console.log(item)
@@ -54,6 +54,12 @@ const vm = new Vue({
             }
             // console.log(target);
             // console.log(currentTarget)       
+        },
+
+        clickForaCarrinho({ target, currentTarget }) {
+            if (target === currentTarget) {
+                this.carrinhoAtivo = false; 
+            }
         },
         adicionarItem() {        
             this.produto.estoque--;
